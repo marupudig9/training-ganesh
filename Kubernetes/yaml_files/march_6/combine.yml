@@ -29,7 +29,7 @@ metadata:
   namespace: ganesh 
   name: secret
 data:
-  graphana.g: |
+  graphana.ini: |
     ICAgIFtzZWN1cml0eV0KICAgIHVzZXJuYW1lOiBiV0Z5ZFhCMVpHa0sKICAgIHBhc3N3b3JkOiBhR1ZzYkc4eE1qTUsK
 ---
 # this is for grafana deployment pod 
