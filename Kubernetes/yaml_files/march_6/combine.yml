@@ -1,0 +1,76 @@
+# this is to create namespace
+
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: ganesh
+  labels:
+    ns: ganesh
+---
+# this is to create a cluster IP default service
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: service
+  namespace: ganesh
+spec:
+  selector:
+    env: test
+  ports:
+  - port: 70
+    targetPort: 3000
+---
+# this is to setup configmaps on the container 
+
+apiVersion: v1
+kind: Secret
+metadata:
+  namespace: ganesh 
+  name: secret
+data:
+  graphana.g: |
+    ICAgIFtzZWN1cml0eV0KICAgIHVzZXJuYW1lOiBiV0Z5ZFhCMVpHa0sKICAgIHBhc3N3b3JkOiBhR1ZzYkc4eE1qTUsK
+---
+# this is for grafana deployment pod 
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: ganesh
+  name: combine
+  labels:
+    env: test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      env: test
+  template:
+    metadata:
+      labels:
+        env: test
+    spec:
+      containers:
+      - name: grafana
+        image: grafana/grafana
+        ports:
+        - containerPort: 3000
+        volumeMounts:
+        - name: graph-volume
+          mountPath: /etc/grafana
+      volumes:
+      - name: graph-volume
+        secret:
+          secretName: secret
+#        env:
+#        - name: username
+#          valueFrom:
+#            secretKeyRef:
+#              name: secret
+#              key: username
+#        - name: password
+#          valueFrom:
+#            secretKeyRef:
+#              name: secret
+#              key: password
