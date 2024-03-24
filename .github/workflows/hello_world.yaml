@@ -25,8 +25,8 @@ jobs:
 
   test1:
     needs: ["test"]
-      runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
 
-      steps:
-        - name: hola
-          run: echo "hello ganesh! ${{ needs.test.outputs.name }}"
+    steps:
+      - name: hola
+        run: echo "hello ganesh! ${{ needs.test.outputs.name }}"
