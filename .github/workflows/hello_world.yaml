@@ -18,6 +18,6 @@ jobs:
       needs: job1
       runs-on: ubuntu-latest
 
-        steps:
-          - name: hola
-            run: echo "hello ganesh!"
+      steps:
+        - name: hola
+          run: echo "hello ganesh!"
