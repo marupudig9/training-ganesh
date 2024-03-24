@@ -17,6 +17,12 @@ jobs:
       - name: checkout repo to runner
         uses: actions/checkout@v2
 
+      - name: HashiCorp - Setup Terraform
+        uses: hashicorp/setup-terraform@v2.0.3
+
+      - name: Run Terraform 
+        uses: sarathkrish/invoke-terraform-run-api@v1.0
+        
       - name: hello
         id: gani
         run: echo "name= ${{ github.event.inputs.user_name }}" >> $GITHUB_OUTPUT
