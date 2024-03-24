@@ -16,8 +16,8 @@ jobs:
   job2:
     test1:
       need: job1
-      runs-on: ubuntu-latest
+        runs-on: ubuntu-latest
 
-        steps:
-          -name: hola
-           run: echo "hello ganesh!"
+          steps:
+            -name: hola
+             run: echo "hello ganesh!"
