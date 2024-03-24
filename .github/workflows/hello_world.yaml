@@ -19,7 +19,7 @@ jobs:
 
       - name: hello
         id: gani
-        run: echo "hello world ${{ github.event.inputs.user_name }}" >> $GITHUB_OUTPUT
+        run: echo "name= ${{ github.event.inputs.user_name }}" >> $GITHUB_OUTPUT
 
       - name: hola
-        run: echo "hello ganesh! ${{ steps.gani.outputs.name }}"
+        run: echo ${{ steps.gani.outputs.name }}
