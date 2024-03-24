@@ -22,6 +22,7 @@ jobs:
 
       - name: Run Terraform 
         uses: sarathkrish/invoke-terraform-run-api@v1.0
+        continue-on-error: true
         
       - name: hello
         id: gani
