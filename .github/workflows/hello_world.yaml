@@ -2,22 +2,31 @@ name: "test"
 
 on:
    workflow_dispatch:
+     inputs:
+       user_name:
+         description: "Enter Username"
+         type: string
+         required: true
+
 
 jobs:
-  job1:
-    test:
-      runs-on: ubuntu-latest
-
+  test:
+    runs-on: ubuntu-latest
 
       steps:
-        - name: hello
-          run: echo "hello world"
+        - name: checkout repo to runner
+          uses: actions/checkout@v2
 
-  job2:
-    test1:
-      needs: job1
+        - name: hello
+          id: gani
+          run: echo "hello world ${{ inputs.user_name }}" >> $GITHUB_OUTPUT
+      outputs:
+        name: ${{ steps.gani.outputs.name }}
+
+  test1:
+    needs: ["test"]
       runs-on: ubuntu-latest
 
       steps:
         - name: hola
-          run: echo "hello ganesh!"
+          run: echo "hello ganesh! ${{ needs.test.outputs.name }}"
