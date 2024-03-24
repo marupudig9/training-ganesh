@@ -20,13 +20,6 @@ jobs:
       - name: hello
         id: gani
         run: echo "hello world ${{ inputs.user_name }}" >> $GITHUB_OUTPUT
-    outputs:
-      name: ${{ steps.gani.outputs.name }}
 
-  test1:
-    needs: ["test"]
-    runs-on: ubuntu-latest
-
-    steps:
       - name: hola
-        run: echo "hello ganesh! ${{ needs.test.outputs.name }}"
+        run: echo "hello ganesh! ${{ steps.gani.outputs.name }}"
