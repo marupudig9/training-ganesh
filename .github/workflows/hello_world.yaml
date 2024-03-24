@@ -13,15 +13,15 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
-      steps:
-        - name: checkout repo to runner
-          uses: actions/checkout@v2
+    steps:
+      - name: checkout repo to runner
+        uses: actions/checkout@v2
 
-        - name: hello
-          id: gani
-          run: echo "hello world ${{ inputs.user_name }}" >> $GITHUB_OUTPUT
-      outputs:
-        name: ${{ steps.gani.outputs.name }}
+      - name: hello
+        id: gani
+        run: echo "hello world ${{ inputs.user_name }}" >> $GITHUB_OUTPUT
+    outputs:
+      name: ${{ steps.gani.outputs.name }}
 
   test1:
     needs: ["test"]
