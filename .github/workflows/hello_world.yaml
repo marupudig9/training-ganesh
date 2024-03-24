@@ -4,12 +4,20 @@ on:
    workflow_dispatch:
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
+  job1:
+    test:
+      runs-on: ubuntu-latest
 
 
-    steps:
-      - name: hello
-        run: > 
-           echo "hello world"
-           echo "hello ganesh!"
+      steps:
+        - name: hello
+          run: echo "hello world"
+
+  job2:
+    test1:
+      need: job1
+      runs-on: ubuntu-latest
+
+        steps:
+          -name: hola
+           run: echo "hello ganesh!"
