@@ -20,8 +20,8 @@ jobs:
       - name: HashiCorp - Setup Terraform
         uses: hashicorp/setup-terraform@v2.0.3
 
-      - name: Run Terraform 
-        uses: sarathkrish/invoke-terraform-run-api@v1.0
+      - name: Terraform init
+        run: terraform init
         continue-on-error: true
         
       - name: hello
