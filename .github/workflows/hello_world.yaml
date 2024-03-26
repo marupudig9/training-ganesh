@@ -5,6 +5,10 @@ on:
     inputs:
       user_name:
         description: "Enter Username"
+        value:
+          - Ganesh
+          - Rajesh
+          - Surya
         type: string
         required: true
 
