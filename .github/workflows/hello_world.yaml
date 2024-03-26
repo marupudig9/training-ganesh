@@ -1,12 +1,12 @@
 name: "test"
 
 on:
-   workflow_dispatch:
-     inputs:
-       user_name:
-       description: "Enter Username"
-       type: string
-       required: true
+  workflow_dispatch:
+    inputs:
+      user_name:
+        description: "Enter Username"
+        type: string
+        required: true
 
 jobs:
   test:
