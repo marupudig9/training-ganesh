@@ -5,7 +5,7 @@ on:
     inputs:
       user_name:
         description: "Enter Username"
-        value:
+        values:
           - Ganesh
           - Rajesh
           - Surya
