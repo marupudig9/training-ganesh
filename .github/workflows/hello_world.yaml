@@ -1,12 +1,12 @@
 name: "test"
 
 on:
-   workflow_dispatch:
-     inputs:
-       user_name:
-         description: "Enter Username"
-         type: string
-         required: true
+  workflow_dispatch:
+    inputs:
+      user_name:
+        description: "Enter Username"
+        type: string
+        required: true
 
 
 jobs:
@@ -17,15 +17,16 @@ jobs:
       - name: checkout repo to runner
         uses: actions/checkout@v2
 
+      - name: HashiCorp - Setup Terraform
+        uses: hashicorp/setup-terraform@v2.0.3
+
+      - name: Terraform init
+        run: terraform init
+        continue-on-error: true
+
       - name: hello
         id: gani
         run: echo "name= ${{ github.event.inputs.user_name }}" >> $GITHUB_OUTPUT
-    outputs:
-      name: ${{ steps.gani.outputs.name  }}
 
-  test1:
-    runs-on: ubuntu-latest
-    needs: ["test"]
-    steps:
       - name: hola
-        run: echo ${{ needs.test.outputs.name }}
+        run: echo ${{ steps.gani.outputs.name }}
