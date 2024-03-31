@@ -33,4 +33,4 @@ jobs:
       - name: hola
         run: echo ${{ needs.test.outputs.name }}
 
-      -run: echo "Ganesh"
+      - run: echo "Ganesh"
