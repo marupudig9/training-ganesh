@@ -92,6 +92,105 @@ We need Normalization to reduce below issues:
 * Inconsistency Dependency.
 
 ---
+
+### <u>DML (Data Manipulation Language) Statements:</u>
+
+Select, Insert, Update, Delete etc., are most common SQL commands.
+
+* Delete will delete a complete row in a table.
+* Delete will log the operation and command what we deleted.
+
+### <u>DDL (Data Definition Language) Statements:</u>
+
+* Deals with Database Schemas and Descriptions.
+
+Create, Alter, Drop and Truncate
+
+* Create statement is also used to create other database object such as Stored Procedure, Function etc.,
+* Alter statement can ADD a column, MODIFY a column, DROP a column, RENAME a column, or RENAME a table.
+* Alter can RENAME a INDEX, SCHEMA and DATABASE.
+
+```
+Alter table Student add studentaddress varchar(50)
+```
+* DROP command will remove many objects in mssql eg: Tables, Schemas etc.,
+* TRUNCATE SQL Query removes all Rows from a table, without logging the individual row deletions.
+* We cannot recover the data once we executed the TRUNCATE Command.
+* We use TRUNCATE when we want to quickly delete.
+
+### <u>DDL (Data Control Language) Statements:</u>
+
+* It defines the control over the data in database. Eg: GRANT, REVOKE etc.,
+* GRANT statement used to grant SQL SELECT, UPDATE, INSERT, DELETE, and other privileges on tables or views.
+
+```
+GRANT UPDATE on "table_name" to "user- eg: ganesh" with GRANT OPTION
+* With GRANT OPTION means--> User who got access can also grant same access to others.
+GRANT SELECT on table "table_name" to public
+```
+```
+REVOKE is used to cancel previously granted or denied permissions.
+REVOKE DELETE on employees from ganesh
+REVOKE ALL on employees from ganesh
+```
+### <u>TCl (Transaction Control Language) Statements:</u>
+
+* These transactions are used to manage the transactions in the DB.
+* Used to manage teh changes made by DML Statements.
+* It also allows the statements to be grouped together into logical transactions.
+
+Important Statements in TCL Statements are: <br>
+<u>COMMIT Statement:</u>
+
+* Commit command is used to permanently save any transaction into the DB.
+* When we use commit in any query then the change made by that query will be permanent and visible.
+
+```
+begin tran d
+update emp set empName= 'D' where empId= 11
+commit tran d
+```
+
+<u>ROLLBACK Statement:</u>
+
+* ROLLBACK is used to undi the changes made by any command but only before a commit is done.
+* We cannot ROLLBACK data which has been committed in the DB with the help of the commit keyword.
+
+```
+DECLARE @BookCount int -- This is declaring a variable
+BEGIN TRANSACTION AddBook
+INSERT INTO Books VALUES (20,'Book15','cat5',2000)
+SELECT @BookCount= COUNT(*) FROM Books WHERE name= 'Book15'
+IF @BookCount>1
+BEGIN
+ROLLBACK TRANSACTION AddBook
+PRINT 'A Book with the same name Exists'
+END
+ELSE
+BEGIN
+COMMIT TRANSACTION AddStudent
+PRINTv'New Book Added Successfully'
+END
+```
+
+<u>SAVEPOINT Statement:</u>
+
+* SAVEPOINT command is used to temporarily save a transaction so that you can roll back to that point whenever necessary.
+* Eg: If we run a transaction command we run half of the query and not sure about the remaining. We give SAVEPOINT there and run so we can commit until the code is correct.
+* SAVEPOINT names must be distinct within a given transaction. Eg: Savepoint1, Savepoint2...
+
+```
+UPDATE employees SET salary=7000 WHERE last_name= 'Banda'
+SAVEPOINT banda_sal
+UPDATE employees SET salary=7000 WHERE last_name= 'Greene'
+SAVEPOINT greene_sal
+SELECT SUM(salary) from employees
+ROLLBACK TO SAVEPOINT banda_sal
+UPDATE employees SET salary=11000 WHERE last_name= 'greene'
+COMMIT
+```
+---
+
 ### <u>SQL Commands:</u>
 
 ```
@@ -119,3 +218,5 @@ To Update value in an existing column:
 
 update sqlTable set emp_id= '101' where emp_name= 'marupudi'
 ```
+
+
