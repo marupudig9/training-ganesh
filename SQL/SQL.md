@@ -218,5 +218,66 @@ To Update value in an existing column:
 
 update sqlTable set emp_id= '101' where emp_name= 'marupudi'
 ```
+What is a Constraint:
+
+Constraint means having restriction on the column <br>
+eg: UNIQUE, NOT NULL <br>
+when we have these constraints, at the end of teh query we add `table_constraints`
+
+What is Temporary db (tempdb):
+
+- Temp db uses system db to store data temporarily.
+- Once we close and open SSMS, all the data inside temp db will be lost and create a new fresh tempdb once we close and open SSMS.
+- Temporary tables are stores inside `tempdb` which is a `system DB.`
+- The name of a temporary table must start with a `#`
+Syntax to create temp db:
+
+```
+With the new session we can create temp table with the same table name.
+```
+
+```
+select id,first_name,last_name <br>
+into #tempPersonTable from schema.tablename where title= 'mr.'
+```
+* Command to transfer Schema
+
+```
+alter schema "existing schema name" transfer "old schema.table/view etc.," 
+```
+* Command to add a new column to an existing db
+
+```
+alter table "table name"
+add "new colum name" "datatype" "any constarint" - Cannot use NOT NULL
+```
+
+* Command to check data type and its character length
+
+```
+select column_name,datatype from information_schema.columns where table_name="table name" and column_name="column_name"
+```
+
+* To create foreign key: create relation between two primary key columns
+
+```
+foreign key ("column name") references "schema.table name" (column_name)
+```
+
+### What is a View:
+
+View in SQL Server is like a Virtual table that contains data from one or more tables.<br>
+View does not hold any data or does not physically exist in the database.<br>
+similar to SQL table the view name should also be unique in DB.<br>
+View does not require any storage in a DB bcz it does not exist physically.<br>
+
+```
+create view studentRecords
+AS
+select schema.tablename.columename etc.,
+from schema.table
+TypeID
+where (schema.table.column='')
+```
 
 
