@@ -15,7 +15,7 @@
 | 11  | How to create a file and open in a editor                                                                                                       | ```vi "filename"```                                                                                                                                                                                                            |
 | 12  | How to use wild cards like ```*,?,{},[]```                                                                                                      | Eg: ```ls tex*``` (To list all files which starts with tex), ```ls te?t``` (To list all files which starts with tex) ```mkdir/touch text{1..10}``` to create multiple files at once ```ls *[ex]*``` list all files contains ex |
 | 13  | Soft link will lost linkage of the file gets deleted and Hard link will stii be intact                                                          | ```ln```(Hard Link),```ln -s```(Soft Link)                                                                                                                                                                                     |
-| 14  | How to change a file or directory ownership for Owner/Group                                                                                     | ```chown "name of the user we want to change" "file name"```,```chgrp "name of the group we want to change" "file name"```                                                                                                     |
+| 14  | How to change a file or directory ownership for Owner/Group                                                                                     | ```chown "name of the user we want to change" "file name"```,```chgrp "name of the group we want to change" "file name"``` ```chown "username":"groupname" filename``` (To change the user and group name at the same time)    |
 | 15  | Help Commands                                                                                                                                   | ```whatis cd,man cd,ls --help```                                                                                                                                                                                               |
 | 16  | To know who is the user                                                                                                                         | ```whoami```                                                                                                                                                                                                                   |
 | 17  | To know the name of the host                                                                                                                    | ```hostname```                                                                                                                                                                                                                 |
@@ -27,6 +27,11 @@
 | 23  | To check hidden files inside a directory                                                                                                        | ```ls -la```                                                                                                                                                                                                                   |
 | 24  | Input data from another file                                                                                                                    | ```cat < "filename"```                                                                                                                                                                                                         |
 | 25  | How to send error messages to a file                                                                                                            | ```ls -ltr /root 2> "Filename"``` (When we run this command in user account, it will throw error and that we want to send it to an error file)                                                                                 |
+| 26  | stdout--> Command to store and view the output of something                                                                                     | ```echo "ganesh" "pipe" tee "filename"``` (to overwrite on the same line) and ```echo "ganesh" "pipe" tee -a "filename" ```(To enter in a new line)                                                                            |
+| 27  | How to check how many words are there in a file                                                                                                 | ```wc -c "filename"```                                                                                                                                                                                                         |
+| 28  | If a directory has 100 files ans want to see them one page at a time                                                                            | ```ls -ltr "pipe" less``` (Space bar to go step by step, b to go 1 page back, g to go to the first page, G to go to end page, and Q to quit)                                                                                   |
+| 29  | To get last bottom few lines from a file                                                                                                        | ```tail -5 "filename"``` to display bottom last 5 lines in a file                                                                                                                                                              |
+| 30  | To get first top few lines from a file                                                                                                          | ```head -5 "filename"``` to display top first 5 lines in a file                                                                                                                                                                |
 
 
 ### ACL:
@@ -44,3 +49,14 @@ NOTE:
 2) Setting W Permission with ACL does not allow to remove a file. 
 * getfacl (To get existing file permissions)
 ```
+### Text Processors Commands <u>(Powerful Commands)</u>:
+
+* cut
+* awk
+* grep
+* sort/uniq
+* wc
+* Compare files diff/cmp
+* compress and uncompress (tar,gzip,gunzip)
+* Truncate file size (truncate)
+* Combining and splitting files
