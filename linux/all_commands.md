@@ -51,9 +51,9 @@ NOTE:
 ```
 ### Text Processors Commands <u>(Powerful Commands)</u>:
 
-* cut
-* awk
-* grep
+* <u>[cut](cat_command.md)</u>
+* <u>[awk](awk_command.md)</u>
+* <u>[grep/egrep](grep_egrep_command.md)
 * sort/uniq
 * wc
 * Compare files diff/cmp
