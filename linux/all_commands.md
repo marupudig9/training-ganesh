@@ -51,7 +51,7 @@ NOTE:
 ```
 ### Text Processors Commands <u>(Powerful Commands)</u>:
 
-* <u>[cut](cat_command.md)</u>
+* <u>[cut](cut_command.md)</u>
 * <u>[awk](awk_command.md)</u>
 * <u>[grep/egrep](grep_egrep_command.md)
 * sort/uniq
