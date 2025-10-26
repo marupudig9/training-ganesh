@@ -1,0 +1,71 @@
+name: Github test
+run-name: test-yq
+
+on:
+
+  push:
+    branches:
+      - main
+
+  pull_request:
+    branches:
+      - main
+
+  workflow_dispatch:
+    inputs:
+      input_variable:
+        description: "This workflow is to test yq" 
+        required: true
+        type: choice
+        default: Naresh
+        options:
+          - Ganesh
+          - Harika
+          - Naresh
+          - Ashwin
+
+permissions:
+  contents: read
+
+jobs:
+  python-setup:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout repo to runner
+        uses: actions/checkout@v2
+      
+      - name: print the path to the github workspace
+        run: echo "github workspace is $GITHUB_WORKSPACE"
+
+      - name: show list of files in github workspace
+        run: ls -ltr $GITHUB_WORKSPACE
+        
+      - name: install python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+
+      - name: load config using yq
+        uses: mikefarah/yq@master
+        id: yq-action
+        with:
+          cmd: yq '.NAME, .SUBJECTS[], .EDUCATION.TENTH_SCHOOL' .github/variables/config.yml #>> test.txt
+      
+      - name: print outputs variables using yq
+        run: |
+          echo "name is ${{ steps.yq-action.outputs.NAME }}"
+          echo "subjects are ${{ steps.yq-action.outputs.SUBJECTS }}"
+          echo "tenth school is ${{ steps.yq-action.outputs.TENTH_SCHOOL }}"
+
+      # - name: upload file as artifact
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     name: test-file
+      #     path: test.txt
+      
+      - name: print config using cat to github env
+        run: |
+          cat .github/variables/config.yml >> $GITHUB_ENV
+          echo "{{$GITHUB_ENV}}"
+
