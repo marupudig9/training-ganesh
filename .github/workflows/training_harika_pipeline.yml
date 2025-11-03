@@ -1,0 +1,35 @@
+name: This is my first workflow file
+run-name: First Workflow Run
+
+on:
+  workflow_dispatch: # this event allows manual triggering of the workflow
+    inputs:
+      user_name:
+        description: "Enter Username"
+        type: choice
+        options:
+          - Ganesh
+          - Rajeshhs
+          - Surya
+        default: Ganesh
+        required: true
+
+jobs:
+  job1:
+    runs-on: ubuntu-latest # as per github hosted runners
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+  job2:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Greet the user
+        run: |
+          echo "Hello, ${{ github.event.inputs.user_name }}! Welcome to the workflow."
+    
+      - name: list files in workspace
+        run: ls -la $GITHUB_WORKSPACE
+    
+      - name: show my workspace
+        run: echo "My workspace is located at $GITHUB_WORKSPACE"

@@ -1,0 +1,18 @@
+strings : characters abc [Strings should be enclosed in quotes or not needed]
+integers : whole numbers 123
+floats : decimal numbers 12.34
+booleans: true/false
+dictionaries: key-value pairs { "key": "value" }
+lists: ordered collections [ "item1", "item2" ]
+
+dictionary:
+  key1: "value1"
+  key2: 100
+  key3: 45.67
+  key4: true
+list:
+  - "item1"
+  - "item2"
+  - 200
+  - false
+
